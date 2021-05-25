@@ -50,7 +50,7 @@ def cohort_signups_pyramid(settled_data, adds_data, signup_data):
             ck_list.append(len(next_ck))
             ck_dict[pym] = len(next_ck)
 
-        df = pd.DataFrame(ck_dict, index=['Signups:'], columns=list(ck_dict.keys()))
+        df = pd.DataFrame(ck_dict, index=['Active Subscribers:'], columns=list(ck_dict.keys()))
         return df
 
     settled_data['pym'] = settled_data['pym'].astype(str)
@@ -138,11 +138,11 @@ while x <= 12:
 print('\n\n')
 
 # Calculating Cohort Lifetime Value Tables
-signups_pyramid = cohort_signups_pyramid(sample_payment_data, sample_adds_data, sample_signups_data).fillna(0)
+active_subscribers_pyramid = cohort_signups_pyramid(sample_payment_data, sample_adds_data, sample_signups_data).fillna(0)
 revenue_pyramid = cohort_revenue_pyramid(sample_payment_data, sample_adds_data, sample_signups_data).fillna(0)
 ARPU_pyramid = revenue_pyramid.div(signups_pyramid.values).fillna(0)
 ARPU_pyramid.rename(index={'Revenue:':'ARPU:'}, inplace=True)
 
-print(signups_pyramid, '\n\n')
+print(active_subscribers_pyramid, '\n\n')
 print(revenue_pyramid, '\n\n')
 print(ARPU_pyramid)

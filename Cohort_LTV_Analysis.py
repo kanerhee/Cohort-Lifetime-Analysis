@@ -140,7 +140,7 @@ print('\n\n')
 # Calculating Cohort Lifetime Value Tables
 active_subscribers_pyramid = cohort_signups_pyramid(sample_payment_data, sample_adds_data, sample_signups_data).fillna(0)
 revenue_pyramid = cohort_revenue_pyramid(sample_payment_data, sample_adds_data, sample_signups_data).fillna(0)
-ARPU_pyramid = revenue_pyramid.div(signups_pyramid.values).fillna(0)
+ARPU_pyramid = revenue_pyramid.div(active_subscribers_pyramid.values).fillna(0)
 ARPU_pyramid.rename(index={'Revenue:':'ARPU:'}, inplace=True)
 
 print(active_subscribers_pyramid, '\n\n')
